@@ -1,6 +1,6 @@
 <ul class="list-unstyled">
   <% microposts.each do |micropost| %>
-    <li class="media md-3">
+    <li class="media md-3 mb-3 border">
       <img class="mr-2 rounded" src="<%= gravatar_url(micropost.user, { size: 50 }) %>" alt="">
       <div class="media-body">
         <div>
@@ -9,10 +9,11 @@
         <div>
           <p class="mb-0"><%= micropost.content %></p>
         </div>
-        <div>
+        <div class="btn-group float-right">
           <% if current_user == micropost.user %>
-            <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm mr-2' %>
           <% end %>
+          <%= render 'favorites/favorite_button', micropost: micropost %>
         </div>
       </div>
     </li>
